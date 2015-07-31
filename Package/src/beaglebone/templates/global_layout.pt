@@ -1,0 +1,30 @@
+<!--! @Author: Hugo Robellaz -->
+<!DOCTYPE PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:define-macro="layout"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico">
+<title>Sense it - ${title}</title>
+<link rel="stylesheet" href="/static/css/jquery-ui.css" />
+<script src="/static/js/jquery-1.9.1.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<link href="/static/css/layout.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<script metal:define-slot="javascript" ></script>
+<body>
+
+	<div class="container">
+	  <div class="header"><a href="/" ><span class="logo">Sense It</span></a> 
+	  <!-- end .header --></div>
+
+	  <div class="content">
+		<div  metal:define-slot="content"></div>
+	  <!-- end .content --></div>
+	  <div class="footer">
+	  <!-- end .footer --></div>
+	<!-- end .container --></div>
+</body>
+</html>

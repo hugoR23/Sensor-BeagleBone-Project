@@ -1,0 +1,9 @@
+README.txt
+setup.py
+src/BeagleBone_Project.egg-info/PKG-INFO
+src/BeagleBone_Project.egg-info/SOURCES.txt
+src/BeagleBone_Project.egg-info/dependency_links.txt
+src/BeagleBone_Project.egg-info/entry_points.txt
+src/BeagleBone_Project.egg-info/requires.txt
+src/BeagleBone_Project.egg-info/top_level.txt
+src/BeagleBone_Project.egg-info/zip-safe

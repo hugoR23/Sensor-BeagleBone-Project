@@ -1,0 +1,6 @@
+setuptools
+nose
+twisted
+matplotlib
+webtest
+pyramid

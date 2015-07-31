@@ -1,0 +1,19 @@
+We received and/or read data from the sensor, and we work on it in order to make it fit the following specifications.
+We give it to the client, and it's his role to adapt this data for an optimal transmission to the server.
+Then, the server gives it back, and we assume that the data he gives also fit those specifications.
+
+Data format:
+
+Data is sent in the form of a dictionary which contains several lists of tuples.
+The dictionary keys represent the data type which is associated to this key (temperature, pressure, etc.).
+For example:
+    dict["TEMPERATURE"] = [tuple1, tuple2, tuple3]
+    dict["PRESSURE"] = [tuple4, tuple5, tuple6, tuple7]
+The possible keys are (for the moment!) the following ones:
+    TEMPERATURE (in °C), PRESSURE (in bar), HUMIDITY (in %), LUMINOSITY (in lux)
+    
+A tuple is in the form of: (date, value).
+The date is the number of secondes elapsed since January 1st 1970.
+The value is a floating point value which can possibly be negative.
+The list is sorted from the oldest value to the most recent one.
+Once the values are sent, they are deleted and will not be sent again. It's the role of the receiver to store the data.

@@ -1,0 +1,9 @@
+rsync -avHDP --delete python3/ root@192.168.7.2:python3/
+root@beaglebone:/sys/bus/i2c/devices# cat 1-0039/lux1_input
+
+1-0039/lux1_input: 202
+1-0040/humidity1_input: 33451 => 33.451%
+1-0040/temp1_input: 33094 => 33.094 °C
+1-0077/pressure0_input: 95526 => 95526 Pa
+1-0077/temp0_input: 330 => 33.0 °C
+

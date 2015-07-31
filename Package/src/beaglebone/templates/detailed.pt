@@ -1,0 +1,86 @@
+<!--! @Author: Hugo Robellaz -->
+<div metal:use-macro="view.global_template">
+  <script metal:fill-slot="javascript">
+	  $(function() {
+	  	//Deals the folding and unfolding on clicking the gear
+		$("#getCustom" ).click(function() {
+		  $( "#custom" ).toggle( "fold", {'size':0.001}, 300 );
+		  $("a.activated").removeClass("activated");
+		  $("#getCustom").addClass("activated")
+		  return false;
+		});
+		
+		//Two calendar to choose the date
+		$("#dateFrom").datepicker({ minDate: "-1Y",
+								    maxDate: 0,
+									dateFormat:"dd/mm/y",
+									onClose: function( selectedDate ) {
+        								$( "#dateTo" ).datepicker( "option", "minDate", selectedDate );
+      							    }
+									});
+		$("#dateTo").datepicker({ minDate: "-1Y",
+								  maxDate: 0 ,
+								  dateFormat:"dd/mm/y",
+								  onClose: function( selectedDate ) {
+        							$( "#dateFrom" ).datepicker( "option", "maxDate", selectedDate );
+      							  }
+								});
+		
+		// Submit the form on clicking the go link
+		$("#goButton").click(function() {
+			$("#customForm").submit();
+		});	  
+		
+		//Deals which button should be activated
+		var custom=${view.HTML_GET('custom')};
+		var deltaTime=${view.HTML_GET('deltaTime')};
+		if(custom==1){
+			$("#getCustom").click();
+		}
+		else if(deltaTime>0){
+			//If a quick button was chosen, we activate the right one
+			$("a.activated").removeClass("activated");
+			$("a[value='"+deltaTime+"']").addClass("activated");
+		}
+	  });
+	  
+  </script>
+  <div metal:fill-slot="content">
+    <div class="card bigOne">
+      <div class="header" style="background-color:${color}" > ${title} </div>
+      <div class="leftPanel" style="border-right-color:${color}">
+        <div style="text-align:center; position:absolute; bottom:10px; width:100%;"><a class="selector blue" href="?deltaTime=31536000" value="31536000">1y</a><a class="selector blue" href="?deltaTime=2678400" value="2678400">1m</a><a class="selector blue" href="?deltaTime=604800" value="604800">1w</a><a class="activated selector blue" href="?deltaTime=86400" value="86400">24h</a><a  class="selector blue" href="?deltaTime=3600" value="3600">1h</a><a id="getCustom" class="selector blue" value="custom" href="javascript:void(0)"><img src="/static/images/whiteGear.png" width="20px" style="margin-top:4px;" /></a>
+		    <div id="custom">
+             <form id="customForm" action="./" method="get">
+              <input type="hidden" value="1" name="custom" />
+              <table width="97%" border="0" cellspacing="0" cellpadding="1">
+                <tr>
+                  <td style="font-size:0.9em;color:#2093CD; padding-left:10px; font-weight:bold;">From</td>
+                  <td><input name="fromDate" id="dateFrom" type="text"  tal:attributes="value view.getDateToPrint('fromDate')" maxlength="8" /></td>
+                  <td><input name="fromHour" type="text"  maxlength="5" tal:attributes="value view.getDateToPrint('fromHour')" /></td>
+                  <td rowspan="2" style="text-align:right;"><a id="goButton" class="selector blue" href="javascript:void(0)" >Go</a></td>
+                </tr>
+                <tr>
+                  <td style="font-size:0.9em;color:#2093CD; padding-left:10px;font-weight:bold;">To</td>
+                  <td><input name="toDate" id="dateTo" type="text"   maxlength="8" tal:attributes="value view.getDateToPrint('toDate')" /></td>
+                  <td><input name="toHour" type="text"  maxlength="5" tal:attributes="value view.getDateToPrint('toHour')" /></td>
+                </tr>
+              </table>
+			 </form>
+            </div>
+		</div>
+        <p>Average ${title}: <span class="figure" style="color:${color};">${average}${unit}</span></p>
+        <p>Highest ${title}: <span class="figure" style="color:${color};">${highest}${unit}</span></p>
+        <p>Lowest ${title}: <span class="figure" style="color:${color};">${lowest}${unit}</span></p>
+        <p>Number of samples: <span class="figure" style="color:${color};">${nbOfSample}</span></p>
+        <p>Average Time between measurement: <span class="figure" style="color:${color};">${avgDeltaTime}</span></p>
+      	
+	  </div>
+      <div class="mainPanel" align="center">
+		<span class="figure" style="color:${color};">From the ${view.getDate()[0].strftime('%d/%m/%y %H:%M')} to the ${view.getDate()[1].strftime('%d/%m/%y %H:%M')}</span>
+	  	<img src="/mainPlot.png?sensorType=${title[:4].lower()}&${request.query_string}" width="550px"/>
+	  </div>
+      <div class="lowRightCorner" style="font-size:0.8em;">Updated ${updatedTime}</div>
+    </div>
+  </div>
+</div>

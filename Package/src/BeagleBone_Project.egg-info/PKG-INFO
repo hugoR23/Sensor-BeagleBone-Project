@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: BeagleBone-Project
+Version: 0.2.1
+Summary: Display data that were retrieved from the BeagleBone through a nice graphical interface.
+Home-page: UNKNOWN
+Author: Gruppe 3: Quoc-Nam DESSOULES, Louis-Adrien DUFRENE, Claire LOFFLER, Hugo ROBELLAZ, Hang YUAN
+Author-email: qn.dessoulles@telecom-bretagne.eu, la.dufrene@telecom-bretagne.eu, claire.loffler@telecom-sudparis.eu, hugo.robellaz@telecom-bretagne.eu, yuanhangd.c@gmail.com
+License: AGPLv3+
+Description: UNKNOWN
+Keywords: Sensors,Server-Client communication,Graphics
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
